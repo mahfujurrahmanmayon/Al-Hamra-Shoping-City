@@ -1,0 +1,84 @@
+/* Global CSS */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: sans-serif;
+}
+i{
+    cursor: pointer;
+}
+
+/* navbar */
+.navbar{
+    padding: 25px 60px;
+    background-color: #212529;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.cart{
+    position: relative;
+    background-color: #fff;
+    color: #212529;
+    font-size: 30px;
+    padding: 5px;
+    border-radius: 4px;
+}
+.cart-amount{
+    position: absolute;
+    background-color: #f00;
+    color: #fff;
+    border-radius: 3px;
+    padding: 3px;
+    top: -10px;
+    right: -10px;
+    font-size: 16px;
+}
+/* Shop */
+.shop{
+    display: grid;
+    gap: 30px;
+    justify-content: center;
+    grid-template-columns: repeat(4, 223px);
+}
+
+@media (max-width: 1000px){
+    .shop{
+        grid-template-columns: repeat(2, 223px);
+    }
+}
+@media (max-width: 500px){
+    .shop{
+        grid-template-columns: repeat(1, 223px);
+    }
+}
+.item{
+    border: 2px solid #212529;
+    border-radius: 4px;
+    text-transform: capitalize;
+}
+.details{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+.price-quantity{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.btns{
+    display: flex;
+    gap: 8px;
+    font-size: 20px;
+}
+.bi-plus-lg{
+    color: green;
+}
