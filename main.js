@@ -1,6 +1,7 @@
+// get the shoping id
 let shop = document.getElementById("shop")
 
-
+// shoping data
 let shopItemsData = [
     {
       id: "jfhgbvnscs",
@@ -32,9 +33,10 @@ let shopItemsData = [
     }
 ];
 
+// local storage
 let basket = JSON.parse(localStorage.getItem("data")) || [];
 
-
+// generate shoping cart
 let generateShop = ()=> {
     return (shop.innerHTML = shopItemsData.map((x)=>{
       
@@ -62,7 +64,7 @@ let generateShop = ()=> {
 
 generateShop()
 
-
+// increment shoping item
 let increment = (id) =>{
   let selectedItem = id
   let search = basket.find((x)=>x.id === selectedItem.id)
@@ -81,6 +83,7 @@ let increment = (id) =>{
   localStorage.setItem("data", JSON.stringify(basket))
 }
 
+// decrement shoping item
 let decrement = (id) =>{
   let selectedItem = id
   let search = basket.find((x)=>x.id === selectedItem.id)
@@ -96,13 +99,14 @@ let decrement = (id) =>{
   basket = basket.filter((x)=>x.item !==0)
 }
 
+// update shoping item 
 let update = (id) =>{
   let search = basket.find((x)=>x.id === id)
   document.getElementById(id).innerHTML = search.item
   calculation()
 }
 
-
+// Calculation
 let calculation = ()=> {
   let cartIcon = document.getElementById("cart-amount")
   cartIcon.innerHTML = basket.map((x)=> x.item).reduce((x,y)=> x+ y, 0)
