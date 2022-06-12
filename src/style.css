@@ -11,6 +11,10 @@ body{
 i{
     cursor: pointer;
 }
+a{
+    text-decoration: none;
+    color: #fff;
+}
 
 /* navbar */
 .navbar{
@@ -81,4 +85,38 @@ i{
 }
 .bi-plus-lg{
     color: green;
+}
+
+/* shoping-cart */
+.shoping-cart{
+    display: grid;
+    grid-template-columns: repeat(1, 320px);
+    justify-content: center;
+    gap: 15px;
+}
+.cart-item{
+    border: 2px solid #212529;
+    display: flex;
+    border-radius: 5px;
+    text-transform: capitalize;
+}
+.bi-x-lg{
+    color: #f00;
+}
+.title-price-x{
+    display: flex;
+    justify-content: space-between;
+    width: 195px;
+    align-items: center;
+}
+.title-price{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.cart-item-price{
+    background-color: #212529;
+    color: #fff;
+    padding: 3px 6px;
+    border-radius: 4px;
 }
