@@ -43,6 +43,7 @@ let generateCart = ()=> {
             `
         }).join("")
     }else{
+        ShopingCart.innerHTML = ""
         label.innerHTML = `
             <h2 class="text-center">Cart is Empty!</h2>
             <a class="text-btn" href="./index.html">
@@ -97,14 +98,41 @@ let update = (id) =>{
     let search = basket.find((x)=>x.id === id)
     document.getElementById(id).innerHTML = search.item
     calculation()
+    TotalAmount()
 }
 
 let removeItem = (id) => {
-    // let search = shopItemsData.find
     let selectedItem = id
-    // console.log(selectedItem.id);
     basket = basket.filter((x)=> x.id !== selectedItem.id)
-    calculation()
     generateCart()
+    calculation()
+    TotalAmount()
     localStorage.setItem("data", JSON.stringify(basket))
+}
+
+
+//  TotalAmount
+let TotalAmount = ()=> {
+    if(basket.length !== 0){
+        let amount = basket.map((x)=>{
+            let {id,item} = x
+            let filterData = shopItemsData.find((x)=>x.id === id) || []
+            return filterData.price * item
+        }).reduce((x,y)=> x + y)
+        
+        return label.innerHTML = `
+            <h2>Total Bill : $ ${amount}</h2>
+            <button class="checkout">Checkout</button>
+            <button onclick="clearCart()" class="clearAll">Clear Cart</button>
+        `
+    }else return
+}
+
+TotalAmount()
+
+// Clear Cart
+let clearCart = () => {
+    basket = []
+    localStorage.setItem("data", JSON.stringify(basket))
+    generateCart()
 }
