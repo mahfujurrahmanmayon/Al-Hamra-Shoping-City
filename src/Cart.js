@@ -1,6 +1,6 @@
 let basket = JSON.parse(localStorage.getItem("data")) || [];
 let ShopingCart = document.getElementById("shoping-cart")
-
+let label  = document.getElementById("label")
 // Calculation
 let calculation = ()=> {
     let cartIcon = document.getElementById("cart-amount")
@@ -26,7 +26,7 @@ let generateCart = ()=> {
                                 <p>${name}</p> 
                                 <p class="cart-item-price">$ ${price}</p> 
                             </h4>
-                            <i class="bi bi-x-lg"></i>
+                            <i onclick="removeItem(${id})" class="bi bi-x-lg"></i>
                         </div>
 
                         <div class="cart-btns">
@@ -43,7 +43,12 @@ let generateCart = ()=> {
             `
         }).join("")
     }else{
-        ShopingCart.innerHTML = "basket is  empty!"
+        label.innerHTML = `
+            <h2 class="text-center">Cart is Empty!</h2>
+            <a class="text-btn" href="./index.html">
+                <button class="HomeBtn">Back To Home</button>
+            </a>
+        `
     }
 }
 
@@ -92,4 +97,14 @@ let update = (id) =>{
     let search = basket.find((x)=>x.id === id)
     document.getElementById(id).innerHTML = search.item
     calculation()
+}
+
+let removeItem = (id) => {
+    // let search = shopItemsData.find
+    let selectedItem = id
+    // console.log(selectedItem.id);
+    basket = basket.filter((x)=> x.id !== selectedItem.id)
+    calculation()
+    generateCart()
+    localStorage.setItem("data", JSON.stringify(basket))
 }
